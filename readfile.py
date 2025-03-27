@@ -1,6 +1,6 @@
 import os
 
-folder = '/data/jian.liang/datasets/OfficeHome/'
+folder = './datasets/OfficeHome/'
 domains = os.listdir(folder)
 domains.sort()
 
@@ -27,6 +27,9 @@ for d in range(len(domains)):
 				file_new = file.replace(" ","_")
 				os.rename(os.path.join(folder, dom_new, cla_new, file), os.path.join(folder, dom_new, cla_new, file_new))
 				print(file, file_new)
-				print('{:} {:}'.format(os.path.join(folder, dom_new, cla_new, file_new), c))
-				f.write('{:} {:}\n'.format(os.path.join(folder, dom_new, cla_new, file_new), c))
+				full_path = os.path.join(folder, dom_new, cla_new, file_new)
+				full_path = os.path.normpath(full_path).replace('\\', '/')
+				print(f'{full_path} {c}')
+				f.write(f'{full_path} {c}\n')
+
 		f.close()
